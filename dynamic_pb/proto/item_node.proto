@@ -1,0 +1,21 @@
+syntax = "proto3";
+package recipes;
+
+message ItemNode {
+  string id = 1; 
+  uint64 version = 2;
+  uint64 create_time = 3;
+  repeated string content_id = 4;
+  string topic = 5;
+  string lv1_cat = 6;
+  string lv2_cat = 7;
+  string tag = 8; 
+  repeated string topic_extend = 9;
+  repeated string cat_extend = 10;
+  repeated string tag_extend = 11;
+  string related_columns = 12;
+  repeated int32 product_area = 13;
+  float aspect_ratio = 14;
+  double copyright_score = 15;       
+  int64 fingerprint = 16;   
+}
