@@ -1,0 +1,11 @@
+/// shell for git
+git_change_author.sh
+git_init.sh
+git_pull.sh
+git_push.sh
+
+/// shell for bazel
+bazel-*
+build.sh
+clean.sh
+local_build.sh
