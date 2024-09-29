@@ -9,3 +9,9 @@ bazel-*
 build.sh
 clean.sh
 local_build.sh
+
+/// shell for clangformat
+cf_diff.sh
+
+/// core
+core.*

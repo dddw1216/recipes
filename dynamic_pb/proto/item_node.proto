@@ -1,5 +1,5 @@
 syntax = "proto3";
-package recipes;
+package recipes.dynamic_pb;
 
 message ItemNode {
   string id = 1; 

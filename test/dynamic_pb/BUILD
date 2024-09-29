@@ -1,12 +1,13 @@
 package(default_visibility = ["//visibility:public"])
 
 cc_binary(
-  name = "dynamic_pb_test",
+  name = "pb_message_factory_test",
   srcs = [
-    "dynamic_pb_test.cc",
+    "pb_message_factory_test.cc",
   ],
   deps = [
     "@com_google_protobuf//:protobuf",
+    "//dynamic_pb:dynamic_pb",
     "//dynamic_pb/proto:dynamic_pb_proto",
   ],
   linkopts = [
