@@ -42,10 +42,11 @@ int main(int argc, char** argv) {
       p_ref->SetDouble(p_dynamic_msg, p_field_des, 0.456 + i + 1);
     }
   }
-  
+
   /// Set unknow_field
   int start_unknown_field_idx = p_des->field_count();
-  p_ref->MutableUnknownFields(p_dynamic_msg)->AddLengthDelimited(start_unknown_field_idx, "unknown_field_" + std::to_string(start_unknown_field_idx));
+  p_ref->MutableUnknownFields(p_dynamic_msg)
+      ->AddLengthDelimited(start_unknown_field_idx, "unknown_field_" + std::to_string(start_unknown_field_idx));
   start_unknown_field_idx++;
   p_ref->MutableUnknownFields(p_dynamic_msg)->AddVarint(start_unknown_field_idx, 20000 + start_unknown_field_idx);
   start_unknown_field_idx++;
