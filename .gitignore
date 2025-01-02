@@ -15,3 +15,6 @@ cf_diff.sh
 
 /// core
 core.*
+
+/// vscode
+.vscode
