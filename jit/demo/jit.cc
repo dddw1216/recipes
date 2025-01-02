@@ -42,7 +42,7 @@ int main() {
 
   // Create a context and a module
   LLVMContext context;
-  auto module = std::make_unique<Module>("my module", context);
+  auto module = std::make_unique<Module>("mymodule", context);
   IRBuilder<> builder(context);
 
   // Create function signature double(double)
@@ -75,21 +75,21 @@ int main() {
   }
 
   // Use a raw pointer to the module
-  auto rawModule = module.get();
+  auto raw_module = module.get();
 
   // Create the JIT execution engine
   std::string errStr;
-  ExecutionEngine *execEngine = EngineBuilder(std::move(module))
-                                    .setErrorStr(&errStr)
-                                    .setMCJITMemoryManager(std::make_unique<SectionMemoryManager>())
-                                    .create();
-  if (!execEngine) {
+  ExecutionEngine *p_exec_engine = EngineBuilder(std::move(module))
+                                       .setErrorStr(&errStr)
+                                       .setMCJITMemoryManager(std::make_unique<SectionMemoryManager>())
+                                       .create();
+  if (!p_exec_engine) {
     std::cerr << "Failed to create ExecutionEngine: " << errStr << std::endl;
     return 1;
   }
 
   // Create and apply optimizations via a pass manager
-  llvm::legacy::FunctionPassManager fpm(rawModule);
+  llvm::legacy::FunctionPassManager fpm(raw_module);
   fpm.add(createPromoteMemoryToRegisterPass());
   fpm.add(createInstructionCombiningPass());
   fpm.add(createReassociatePass());
@@ -100,8 +100,8 @@ int main() {
   fpm.doFinalization();
 
   // Get the function pointer and execute it
-  auto fnPointer = reinterpret_cast<FuncType>(execEngine->getFunctionAddress("func"));
-  if (!fnPointer) {
+  auto fn_ptr = reinterpret_cast<FuncType>(p_exec_engine->getFunctionAddress("func"));
+  if (!fn_ptr) {
     std::cerr << "Could not get function pointer." << std::endl;
     return 1;
   }
@@ -111,7 +111,7 @@ int main() {
   auto exec_start = std::chrono::high_resolution_clock::now();
 
   for (int i = 0; i < N; ++i) {
-    sum += fnPointer(i * 0.1);
+    sum += fn_ptr(i * 0.1);
   }
 
   auto exec_end = std::chrono::high_resolution_clock::now();

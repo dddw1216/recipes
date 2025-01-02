@@ -15,7 +15,7 @@
 #include <iostream>
 
 // 普通C++版本计算
-double dynamicComplexFunc(double x) {
+double DynamicComplexFunc(double x) {
   double result = x;
   for (int i = 1; i <= 10; ++i) {
     result += i * x;
@@ -31,7 +31,7 @@ int main() {
   auto exec_start = std::chrono::high_resolution_clock::now();
 
   for (int i = 0; i < N; ++i) {
-    sum += dynamicComplexFunc(i * 0.1);
+    sum += DynamicComplexFunc(i * 0.1);
   }
 
   // Execution end time
