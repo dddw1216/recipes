@@ -18,3 +18,13 @@ core.*
 
 /// vscode
 .vscode
+
+///
+.idea
+
+///
+.DS_Store
+*/.DS_Store
+
+///
+out/*
